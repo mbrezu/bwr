@@ -21,7 +21,7 @@
   (tbnl:start *acceptor*))
 
 (defun stop ()
-  (tbnl:stop *bwr-acceptor*))
+  (tbnl:stop *acceptor*))
 
 (defun hello-handler ()
   (labels ((path-is (str)
@@ -32,12 +32,14 @@
              (:html
               (:head
                (:title "Basic Web Rig")
-               (:script :type "text/javascript"
-                        :src "static/jquery.js")
-               (:script :type "text/javascript"
-                        :src "code/script.js"))
+               (:script :type "text/javascript" :src "static/jquery.js")
+               (:script :type "text/javascript" :src "code/script.js")
+               (:link :rel "stylesheet" :type "text/css" :media "screen" :href "style.css"))
               (:body
                (:p :id "the-p")))))
+          ((path-is "/style.css")
+           (css-lite:css
+             (("#the-p") (:background-color "yellow"))))
           ((path-is "/code/script.js")
            (let ((*ps-print-pretty* t))
              (ps
