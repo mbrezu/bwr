@@ -17,13 +17,14 @@
 
 (defun start ()
   (when (not *acceptor*)
-    (setf *acceptor* (make-instance 'tbnl:easy-acceptor :port 9000)))
+    (setf *acceptor* (make-instance 'tbnl:easy-acceptor :port 9000))
+    (make-app 'handler))
   (tbnl:start *acceptor*))
 
 (defun stop ()
   (tbnl:stop *acceptor*))
 
-(defun hello-handler ()
+(defun handler ()
   (labels ((path-is (str)
              (string-equal (tbnl:script-name tbnl:*request*)
                            str)))

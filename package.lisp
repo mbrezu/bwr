@@ -2,9 +2,8 @@
 
 (defpackage #:bwr
   (:use #:cl #:cl-who #:parenscript)
-  (:export 
+  (:export
    :make-app
    :start
-   :stop
-   :hello-handler))
+   :stop))
 
